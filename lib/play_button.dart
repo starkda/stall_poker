@@ -39,6 +39,7 @@ class _PlayButtonState extends State<PlayButton> {
               builder: (context) {
                 if (shouldShow == false) {
                   return Container();
+
                 } else {
                   return const GameSpecifierButton(position: -3, route: '/', text: 'Create Game',);
                 }
