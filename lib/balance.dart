@@ -18,19 +18,23 @@ class Balance extends StatelessWidget {
               width: 30,
             ),
             SizedBox(
-              width: 150,
-                child: Row(
-                    children: [
-                      const SizedBox(width: 5,),
-                      SvgPicture.asset('assets/balance_chip.svg'),
-                      const SizedBox(width: 5,),
-                      Text(
-
-                        balance.toString(),
-                        style:
-                            const TextStyle(fontSize: 28, color: Color(0xFF729C62), decoration: TextDecoration.none),
-                      )
-                    ]))
+                width: 150,
+                child: Row(children: [
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  SvgPicture.asset('assets/balance_chip.svg'),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    balance.toString(),
+                    style: const TextStyle(
+                        fontSize: 28,
+                        color: Color(0xFF729C62),
+                        decoration: TextDecoration.none),
+                  )
+                ]))
           ],
         ));
   }

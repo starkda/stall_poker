@@ -40,7 +40,11 @@ class _PlayButtonState extends State<PlayButton> {
                 if (shouldShow == false) {
                   return Container();
                 } else {
-                  return const GameSpecifierButton(position: -3, route: '/', text: 'Create Game',);
+                  return const GameSpecifierButton(
+                    position: -3,
+                    route: '/',
+                    text: 'Create Game',
+                  );
                 }
               },
             ),
@@ -56,7 +60,11 @@ class _PlayButtonState extends State<PlayButton> {
                 if (shouldShow == false) {
                   return Container();
                 } else {
-                  return const GameSpecifierButton(position: -2, route: '/', text: 'Game by ID',);
+                  return const GameSpecifierButton(
+                    position: -2,
+                    route: '/',
+                    text: 'Game by ID',
+                  );
                 }
               },
             ),
@@ -72,7 +80,11 @@ class _PlayButtonState extends State<PlayButton> {
                 if (shouldShow == false) {
                   return Container();
                 } else {
-                  return const GameSpecifierButton(position: -1, route: '/', text: 'Random Game',);
+                  return const GameSpecifierButton(
+                    position: -1,
+                    route: '/',
+                    text: 'Random Game',
+                  );
                 }
               },
             ),
