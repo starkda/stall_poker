@@ -29,8 +29,16 @@ class ProfileButton extends StatelessWidget {
           SizedBox(
               width: width,
               height: height,
-              child: const Center(child: Text('Profile',  style: TextStyle(color: Colors.black, fontSize: 33, decoration: TextDecoration.none, fontFamily: 'Serious'),),)
-          ),
+              child: const Center(
+                child: Text(
+                  'Profile',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 33,
+                      decoration: TextDecoration.none,
+                      fontFamily: 'Serious'),
+                ),
+              )),
           SizedBox(
             width: width,
             height: height,

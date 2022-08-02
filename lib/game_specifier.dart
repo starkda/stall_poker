@@ -105,7 +105,8 @@ class _MyStatefulWidgetState2 extends State<MyStatefulWidget2>
       child: Container(
         margin: EdgeInsets.fromLTRB(screenWidth * 0.084, 0, 0, 0),
         decoration: BoxDecoration(
-            color: const Color(0xFF76CD7F), border: Border.all(color: Colors.black)),
+            color: const Color(0xFF76CD7F),
+            border: Border.all(color: Colors.black)),
       ),
     );
   }

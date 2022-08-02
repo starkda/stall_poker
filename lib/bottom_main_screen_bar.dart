@@ -12,7 +12,6 @@ class BottomMainScreenBar extends StatefulWidget {
 }
 
 class _BottomMainScreenBarState extends State<BottomMainScreenBar> {
-
   @override
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
@@ -20,29 +19,29 @@ class _BottomMainScreenBarState extends State<BottomMainScreenBar> {
 
     return Stack(
       children: [
-            Stack(
-              children: [
-                Container(
-                  width: screenWidth,
-                ),
-                HelpButton(height: screenHeight, width: screenWidth * 0.29),
-                Positioned(
-                  left: screenWidth * 0.204,
-                  child: ProfileButton(
-                      height: screenHeight, width: screenWidth * 0.346),
-                ),
-                Positioned(
-                  left: screenWidth * 0.456,
-                  child: SettingsButton(
-                      height: screenHeight, width: screenWidth * 0.336),
-                ),
-                Positioned(
-                  left: screenWidth * 0.707,
-                  child: PlayButton(
-                      height: screenHeight, width: screenWidth * 0.29),
-                ),
-              ],
+        Stack(
+          children: [
+            Container(
+              width: screenWidth,
             ),
+            HelpButton(height: screenHeight, width: screenWidth * 0.29),
+            Positioned(
+              left: screenWidth * 0.204,
+              child: ProfileButton(
+                  height: screenHeight, width: screenWidth * 0.346),
+            ),
+            Positioned(
+              left: screenWidth * 0.456,
+              child: SettingsButton(
+                  height: screenHeight, width: screenWidth * 0.336),
+            ),
+            Positioned(
+              left: screenWidth * 0.707,
+              child:
+                  PlayButton(height: screenHeight, width: screenWidth * 0.29),
+            ),
+          ],
+        ),
       ],
     );
   }
