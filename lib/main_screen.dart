@@ -24,7 +24,7 @@ class _MainScreenState extends State<MainScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: const [
             Balance(
-              balance: 100000,
+              balance: 10,
             ),
             Text(
               'Stall poker',
