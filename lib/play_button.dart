@@ -121,7 +121,8 @@ class _PlayButtonState extends State<PlayButton> {
             ),
           ),
         ),
-        GestureDetector(
+        IgnorePointer(
+          child: GestureDetector(
             onTap: kek,
             child: SizedBox(
               width: widget.width,
@@ -129,7 +130,9 @@ class _PlayButtonState extends State<PlayButton> {
               child: CustomPaint(
                 painter: PlayStroke(),
               ),
-            ))
+            ),
+          ),
+        ),
       ],
     );
   }

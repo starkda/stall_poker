@@ -16,7 +16,7 @@ class ProfileButton extends StatelessWidget {
           print('Profile button was tought');
         }
       },
-      child: Stack(
+      child: SizedBox(height: height, width: width, child: Stack(
         children: [
           ClipPath(
             clipper: ProfileBackground(),
@@ -39,15 +39,15 @@ class ProfileButton extends StatelessWidget {
                       fontFamily: 'Serious'),
                 ),
               )),
-          SizedBox(
+          IgnorePointer(child: SizedBox(
             width: width,
             height: height,
             child: CustomPaint(
               painter: ProfileStroke(),
             ),
-          )
+          ))
         ],
-      ),
+      ),),
     );
   }
 }
