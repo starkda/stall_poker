@@ -9,6 +9,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+    expect(find.text('Play'), findsNothing);
     // Build our app and trigger a frame.
     // Verify that our counter has incremented.
   });
