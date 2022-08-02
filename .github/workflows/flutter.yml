@@ -30,11 +30,12 @@ jobs:
         with:
           java-version: '12.x'
       
+      
       # Runs a single command using the runners shell
       - name: get dependencies
         run: flutter pub get
-      
-      # Check code format by Flutter format
+        
+        # Check code format by Flutter format
       - name: formatting check
         run: flutter format lib --set-exit-if-changed .
       
