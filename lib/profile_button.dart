@@ -16,37 +16,42 @@ class ProfileButton extends StatelessWidget {
           print('Profile button was tought');
         }
       },
-      child: Stack(
-        children: [
-          ClipPath(
-            clipper: ProfileBackground(),
-            child: Container(
+      child: SizedBox(
+        height: height,
+        width: width,
+        child: Stack(
+          children: [
+            ClipPath(
+              clipper: ProfileBackground(),
+              child: Container(
+                width: width,
+                height: height,
+                color: const Color(0xFF76CD7F),
+              ),
+            ),
+            SizedBox(
+                width: width,
+                height: height,
+                child: const Center(
+                  child: Text(
+                    'Profile',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 33,
+                        decoration: TextDecoration.none,
+                        fontFamily: 'Serious'),
+                  ),
+                )),
+            IgnorePointer(
+                child: SizedBox(
               width: width,
               height: height,
-              color: const Color(0xFF76CD7F),
-            ),
-          ),
-          SizedBox(
-              width: width,
-              height: height,
-              child: const Center(
-                child: Text(
-                  'Profile',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 33,
-                      decoration: TextDecoration.none,
-                      fontFamily: 'Serious'),
-                ),
-              )),
-          SizedBox(
-            width: width,
-            height: height,
-            child: CustomPaint(
-              painter: ProfileStroke(),
-            ),
-          )
-        ],
+              child: CustomPaint(
+                painter: ProfileStroke(),
+              ),
+            ))
+          ],
+        ),
       ),
     );
   }

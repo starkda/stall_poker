@@ -39,11 +39,13 @@ class SettingsButton extends StatelessWidget {
                       fontFamily: 'Serious'),
                 ),
               )),
-          SizedBox(
-            width: width,
-            height: height,
-            child: CustomPaint(
-              painter: SettingsStroke(),
+          IgnorePointer(
+            child: SizedBox(
+              width: width,
+              height: height,
+              child: CustomPaint(
+                painter: SettingsStroke(),
+              ),
             ),
           )
         ],
