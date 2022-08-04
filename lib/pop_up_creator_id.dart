@@ -40,13 +40,15 @@ void showIdDialog(BuildContext context) {
                     child: TextField(
                       controller: controller,
                       decoration: InputDecoration(
-                        contentPadding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 0.0),
+                        contentPadding:
+                            const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 0.0),
                         hintText: 'ID',
                         suffixIcon: SvgPicture.asset('assets/search.svg'),
                         fillColor: Colors.white,
                         filled: true,
                         border: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.black, width: 2),
+                          borderSide:
+                              const BorderSide(color: Colors.black, width: 2),
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
@@ -63,14 +65,14 @@ void showIdDialog(BuildContext context) {
                           borderRadius: BorderRadius.circular(10)),
                     ),
                     child: const Text(
-                        'Find game!',
-                        style: TextStyle(
-                            color: Colors.black,
-                            decoration: TextDecoration.none,
-                            fontFamily: 'Serious',
-                            fontSize: 20),
-                      ),
+                      'Find game!',
+                      style: TextStyle(
+                          color: Colors.black,
+                          decoration: TextDecoration.none,
+                          fontFamily: 'Serious',
+                          fontSize: 20),
                     ),
+                  ),
                 ],
               ),
             ),
@@ -84,5 +86,4 @@ void getGame(String data, BuildContext context) {
     print('some backend things');
   }
   Navigator.pop(context);
-
 }

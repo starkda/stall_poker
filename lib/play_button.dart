@@ -1,7 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'pop_up_creator_id.dart';
+
 import 'game_specifier.dart';
+import 'pop_up_creator_id.dart';
 
 class PlayButton extends StatefulWidget {
   final double height;
@@ -25,6 +26,7 @@ class _PlayButtonState extends State<PlayButton> {
       shouldShow ^= true;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -101,7 +103,7 @@ class _PlayButtonState extends State<PlayButton> {
           bottom: widget.height * 1.8,
           child: GestureDetector(
             onTap: () {
-             showIdDialog(context);
+              showIdDialog(context);
             },
             child: Builder(
               builder: (context) {
