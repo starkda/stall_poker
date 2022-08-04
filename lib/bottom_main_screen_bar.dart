@@ -23,26 +23,30 @@ class _BottomMainScreenBarState extends State<BottomMainScreenBar> {
       children: [
         Stack(
           children: [
-            Container(
+            SizedBox(
+              height: screenHeight * 4,
               width: screenWidth,
             ),
-            HelpButton(height: screenHeight, width: screenWidth * 0.29),
+            Positioned(
+              bottom: 0,
+              child:
+                  HelpButton(height: screenHeight, width: screenWidth * 0.29),
+            ),
             Positioned(
               left: screenWidth * 0.204,
-              child: GestureDetector(
-                  onTap: () {
-                    print(2);
-                  },
-                  child: ProfileButton(
-                      height: screenHeight, width: screenWidth * 0.346)),
+              bottom: 0,
+              child: ProfileButton(
+                  height: screenHeight, width: screenWidth * 0.346),
             ),
             Positioned(
               left: screenWidth * 0.456,
+              bottom: 0,
               child: SettingsButton(
                   height: screenHeight, width: screenWidth * 0.336),
             ),
             Positioned(
               left: screenWidth * 0.707,
+              bottom: 0,
               child:
                   PlayButton(height: screenHeight, width: screenWidth * 0.29),
             ),

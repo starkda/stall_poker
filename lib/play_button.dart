@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
+import 'pop_up_creator_id.dart';
 import 'game_specifier.dart';
 
 class PlayButton extends StatefulWidget {
@@ -25,11 +25,14 @@ class _PlayButtonState extends State<PlayButton> {
       shouldShow ^= true;
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return Stack(
+      alignment: Alignment.bottomRight,
       children: [
+        Container(
+          height: widget.height * 4,
+        ),
         Positioned(
           left: widget.width * 0.278,
           child: SizedBox(
@@ -45,6 +48,29 @@ class _PlayButtonState extends State<PlayButton> {
                     route: '/',
                     text: 'Create Game',
                   );
+                }
+              },
+            ),
+          ),
+        ),
+        Positioned(
+          left: widget.width * 0.278,
+          bottom: widget.height * 2.7,
+          child: GestureDetector(
+            onTap: () {
+              if (kDebugMode) {
+                print('Create game taught');
+              }
+            },
+            child: Builder(
+              builder: (context) {
+                if (shouldShow == false) {
+                  return Container();
+                } else {
+                  return Container(
+                      height: widget.height * 0.9,
+                      width: widget.width - widget.width * 0.278,
+                      color: Colors.transparent);
                 }
               },
             ),
@@ -72,6 +98,27 @@ class _PlayButtonState extends State<PlayButton> {
         ),
         Positioned(
           left: widget.width * 0.278,
+          bottom: widget.height * 1.8,
+          child: GestureDetector(
+            onTap: () {
+             showIdDialog(context);
+            },
+            child: Builder(
+              builder: (context) {
+                if (shouldShow == false) {
+                  return Container();
+                } else {
+                  return Container(
+                      height: widget.height * 0.9,
+                      width: widget.width - widget.width * 0.278,
+                      color: Colors.transparent);
+                }
+              },
+            ),
+          ),
+        ),
+        Positioned(
+          left: widget.width * 0.278,
           child: SizedBox(
             height: widget.height * 0.9,
             width: widget.width - widget.width * 0.278,
@@ -90,19 +137,46 @@ class _PlayButtonState extends State<PlayButton> {
             ),
           ),
         ),
-        GestureDetector(
-          onTap: kek,
-          child: ClipPath(
-            clipper: PlayBackground(),
-            child: Container(
-              width: widget.width,
-              height: widget.height,
-              color: const Color(0xFF76CD7F),
+        Positioned(
+          left: widget.width * 0.278,
+          bottom: widget.height * 0.9,
+          child: GestureDetector(
+            onTap: () {
+              if (kDebugMode) {
+                print('Random Game taught');
+              }
+            },
+            child: Builder(
+              builder: (context) {
+                if (shouldShow == false) {
+                  return Container();
+                } else {
+                  return Container(
+                      height: widget.height * 0.9,
+                      width: widget.width - widget.width * 0.278,
+                      color: Colors.transparent);
+                }
+              },
+            ),
+          ),
+        ),
+        Positioned(
+          bottom: 0,
+          child: GestureDetector(
+            onTap: kek,
+            child: ClipPath(
+              clipper: PlayBackground(),
+              child: Container(
+                width: widget.width,
+                height: widget.height,
+                color: const Color(0xFF76CD7F),
+              ),
             ),
           ),
         ),
         Positioned(
           left: widget.width * 0.2,
+          bottom: 0,
           child: GestureDetector(
             onTap: kek,
             child: SizedBox(

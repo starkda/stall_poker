@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'balance.dart';
 import 'bottom_main_screen_bar.dart';
 
@@ -20,13 +21,9 @@ class _MainScreenState extends State<MainScreen> {
             fit: BoxFit.fitHeight,
           ),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const [
-            Balance(
-              balance: 10,
-            ),
-            Text(
+        child: Stack(children: [
+          const Center(
+            child: Text(
               'Stall poker',
               style: TextStyle(
                   fontSize: 80,
@@ -34,11 +31,19 @@ class _MainScreenState extends State<MainScreen> {
                   decoration: TextDecoration.none,
                   color: Color(0xFF76CD7F)),
             ),
-            BottomMainScreenBar(
-              title: 'kek',
-            ),
-          ],
-        ),
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: const [
+              Balance(
+                balance: 10,
+              ),
+              BottomMainScreenBar(
+                title: 'kek',
+              ),
+            ],
+          ),
+        ]),
       ),
     );
   }

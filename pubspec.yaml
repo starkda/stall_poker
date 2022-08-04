@@ -71,6 +71,7 @@ flutter:
     - assets/Play Button.svg
     - assets/Help Button.png
     - assets/Profile Button.png
+    - assets/search.svg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
