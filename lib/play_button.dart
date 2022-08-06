@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'game_specifier.dart';
+import 'pop_up_create_game.dart';
 import 'pop_up_creator_id.dart';
 
 class PlayButton extends StatefulWidget {
@@ -27,6 +28,58 @@ class _PlayButtonState extends State<PlayButton> {
     });
   }
 
+  Widget getBlueprint(double leftPadding, double height, double width,
+      double position, String route, String name) {
+    return Positioned(
+      left: leftPadding,
+      child: SizedBox(
+        height: height,
+        width: width,
+        child: Builder(
+          builder: (context) {
+            if (shouldShow == false) {
+              return Container();
+            } else {
+              return GameSpecifierButton(
+                position: position,
+                route: route,
+                text: name,
+              );
+            }
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget getTouchable(
+    double leftPadding,
+    double bottomPadding,
+    callback,
+    height,
+    double width,
+  ) {
+    return Positioned(
+      left: leftPadding,
+      bottom: bottomPadding,
+      child: GestureDetector(
+        onTap: () {
+          callback();
+        },
+        child: Builder(
+          builder: (context) {
+            if (shouldShow == false) {
+              return Container();
+            } else {
+              return Container(
+                  height: height, width: width, color: Colors.transparent);
+            }
+          },
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -35,133 +88,29 @@ class _PlayButtonState extends State<PlayButton> {
         Container(
           height: widget.height * 4,
         ),
-        Positioned(
-          left: widget.width * 0.278,
-          child: SizedBox(
-            height: widget.height * 0.9,
-            width: widget.width - widget.width * 0.278,
-            child: Builder(
-              builder: (context) {
-                if (shouldShow == false) {
-                  return Container();
-                } else {
-                  return const GameSpecifierButton(
-                    position: -3,
-                    route: '/',
-                    text: 'Create Game',
-                  );
-                }
-              },
-            ),
-          ),
-        ),
-        Positioned(
-          left: widget.width * 0.278,
-          bottom: widget.height * 2.7,
-          child: GestureDetector(
-            onTap: () {
-              if (kDebugMode) {
-                print('Create game taught');
-              }
-            },
-            child: Builder(
-              builder: (context) {
-                if (shouldShow == false) {
-                  return Container();
-                } else {
-                  return Container(
-                      height: widget.height * 0.9,
-                      width: widget.width - widget.width * 0.278,
-                      color: Colors.transparent);
-                }
-              },
-            ),
-          ),
-        ),
-        Positioned(
-          left: widget.width * 0.278,
-          child: SizedBox(
-            height: widget.height * 0.9,
-            width: widget.width - widget.width * 0.278,
-            child: Builder(
-              builder: (context) {
-                if (shouldShow == false) {
-                  return Container();
-                } else {
-                  return const GameSpecifierButton(
-                    position: -2,
-                    route: '/',
-                    text: 'Game by ID',
-                  );
-                }
-              },
-            ),
-          ),
-        ),
-        Positioned(
-          left: widget.width * 0.278,
-          bottom: widget.height * 1.8,
-          child: GestureDetector(
-            onTap: () {
-              showIdDialog(context);
-            },
-            child: Builder(
-              builder: (context) {
-                if (shouldShow == false) {
-                  return Container();
-                } else {
-                  return Container(
-                      height: widget.height * 0.9,
-                      width: widget.width - widget.width * 0.278,
-                      color: Colors.transparent);
-                }
-              },
-            ),
-          ),
-        ),
-        Positioned(
-          left: widget.width * 0.278,
-          child: SizedBox(
-            height: widget.height * 0.9,
-            width: widget.width - widget.width * 0.278,
-            child: Builder(
-              builder: (context) {
-                if (shouldShow == false) {
-                  return Container();
-                } else {
-                  return const GameSpecifierButton(
-                    position: -1,
-                    route: '/',
-                    text: 'Random Game',
-                  );
-                }
-              },
-            ),
-          ),
-        ),
-        Positioned(
-          left: widget.width * 0.278,
-          bottom: widget.height * 0.9,
-          child: GestureDetector(
-            onTap: () {
-              if (kDebugMode) {
-                print('Random Game taught');
-              }
-            },
-            child: Builder(
-              builder: (context) {
-                if (shouldShow == false) {
-                  return Container();
-                } else {
-                  return Container(
-                      height: widget.height * 0.9,
-                      width: widget.width - widget.width * 0.278,
-                      color: Colors.transparent);
-                }
-              },
-            ),
-          ),
-        ),
+        getBlueprint(widget.width * 0.278, widget.height * 0.9,
+            widget.width - widget.width * 0.278, -3, '/', 'Create Game'),
+        getTouchable(widget.width * 0.278, widget.height * 2.7, () {
+          if (kDebugMode) {
+            print('Create game taught');
+          }
+          createGameDialog(context);
+        }, widget.height * 0.9, widget.width - widget.width * 0.278),
+        getBlueprint(widget.width * 0.278, widget.height * 0.9,
+            widget.width - widget.width * 0.278, -2, '/', 'Game by ID'),
+        getTouchable(widget.width * 0.278, widget.height * 1.8, () {
+          if (kDebugMode) {
+            print('Game by ID taught');
+          }
+          showIdDialog(context);
+        }, widget.height * 0.9, widget.width - widget.width * 0.278),
+        getBlueprint(widget.width * 0.278, widget.height * 0.9,
+            widget.width - widget.width * 0.278, -1, '/', 'Random Game'),
+        getTouchable(widget.width * 0.278, widget.height * 0.9, () {
+          if (kDebugMode) {
+            print('Random Game taught');
+          }
+        }, widget.height * 0.9, widget.width - widget.width * 0.278),
         Positioned(
           bottom: 0,
           child: GestureDetector(

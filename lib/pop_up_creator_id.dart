@@ -1,6 +1,7 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
+import 'backend_interaction.dart';
 
 void showIdDialog(BuildContext context) {
   final TextEditingController controller = TextEditingController();
@@ -56,7 +57,7 @@ void showIdDialog(BuildContext context) {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      getGame(data, context);
+                      sendGetGameByIdData(data, context);
                     },
                     style: ElevatedButton.styleFrom(
                       primary: const Color(0xffEADD69),
@@ -79,11 +80,4 @@ void showIdDialog(BuildContext context) {
           ),
         );
       });
-}
-
-void getGame(String data, BuildContext context) {
-  if (kDebugMode) {
-    print('some backend things');
-  }
-  Navigator.pop(context);
 }
