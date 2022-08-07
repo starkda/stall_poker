@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'main_screen.dart';
-
+import 'route_generator.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -17,9 +16,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       initialRoute: '/',
-      routes: {
-        '/': (context) => const MainScreen(),
-      },
+      onGenerateRoute: routeGenerator,
     );
   }
 }
+

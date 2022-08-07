@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:stallpoker/play_button.dart';
-import 'package:stallpoker/profile_button.dart';
-import 'package:stallpoker/settings_button.dart';
+import'play_button.dart';
+import 'package:stallpoker/stall_poker_screen/profile_button.dart';
+import 'package:stallpoker/stall_poker_screen/settings_button.dart';
 
 import 'help_button.dart';
 

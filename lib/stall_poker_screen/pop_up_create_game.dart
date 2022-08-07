@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'backend_interaction.dart';
-import 'data_cast_generator.dart';
+import '../backend_interaction.dart';
+import '../data_cast_generator.dart';
 
 void createGameDialog(BuildContext context) {
   DataCastGenerator gen = DataCastGenerator();
@@ -87,8 +87,8 @@ void createGameDialog(BuildContext context) {
                         inactiveColor: Colors.black38,
                         activeColor: const Color(0xff4A4A4A),
                         thumbColor: Colors.black,
-                        divisions: 4,
-                        min: 1,
+                        divisions: 3,
+                        min: 2,
                         max: 5,
                         value: createGameDataBox["maximal_players"],
                         onChanged: (value) {
