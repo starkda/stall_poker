@@ -1,5 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:stallpoker/backend_interaction.dart';
+
+import 'data_cast_generator.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({Key? key}) : super(key: key);
@@ -9,8 +12,28 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
+  final Map<String, dynamic> userData = DataCastGenerator().getUserDataCast();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  int curState = 500;
+
+  @override
+  void initState() {
+    super.initState();
+    nameController.addListener(() {
+      userData['login'] = nameController.text;
+    });
+    passwordController.addListener(() {
+      userData['password'] = passwordController.text;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (curState == 200) {
+      Navigator.of(context).pushReplacementNamed('main_screen');
+    }
+
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return SafeArea(
@@ -60,6 +83,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             width: width * 0.20,
                             height: height * 0.07,
                             child: TextField(
+                              controller: nameController,
                               scrollPadding: EdgeInsets.only(
                                   bottom:
                                       MediaQuery.of(context).viewInsets.bottom +
@@ -93,6 +117,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             width: width * 0.20,
                             height: height * 0.07,
                             child: TextField(
+                              controller: passwordController,
                               scrollPadding: EdgeInsets.only(
                                   bottom:
                                       MediaQuery.of(context).viewInsets.bottom +
@@ -112,9 +137,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       height: 25,
                     ),
                     ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
                         if (kDebugMode) {
-                          print('login button taught');
+                          print('register button taught');
+                          registerUser(userData).then((value) {
+                            if (kDebugMode) {
+                              print(value);
+                            }
+                            setState(() {
+                              curState = value;
+                            });
+                          });
                         }
                       },
                       style: OutlinedButton.styleFrom(

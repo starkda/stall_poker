@@ -13,4 +13,11 @@ class DataCastGenerator {
     // some additional work....
     return cast;
   }
+
+  Map<String, dynamic> getUserDataCast() {
+    Map<String, dynamic> cast = initializeCast();
+    cast['login'] = 'null';
+    cast['password'] = 'null';
+    return cast;
+  }
 }

@@ -14,6 +14,7 @@ Route? routeGenerator(RouteSettings settings) {
       return MaterialPageRoute(
           builder: (context) => const RegistrationScreen());
     default:
-      return MaterialPageRoute(builder: (context) => const LoginScreen());
+      return MaterialPageRoute(
+          builder: (context) => const RegistrationScreen());
   }
 }
