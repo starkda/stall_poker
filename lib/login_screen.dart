@@ -1,6 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'backend_interaction.dart';
+import 'data_cast_generator.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -9,8 +12,27 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  int curState = 500;
+  final Map<String, dynamic> userData = DataCastGenerator().getUserDataCast();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    nameController.addListener(() {
+      userData['login'] = nameController.text;
+    });
+    passwordController.addListener(() {
+      userData['password'] = passwordController.text;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (curState == 200) {
+      Navigator.of(context).pushReplacementNamed('main_screen');
+    }
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return SafeArea(
@@ -112,9 +134,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: 25,
                     ),
                     ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
                         if (kDebugMode) {
                           print('login button taught');
+                          loginUser(userData).then((value) {
+                            if (kDebugMode) {
+                              print(value);
+                            }
+                            setState(() {
+                              curState = value;
+                            });
+                          });
                         }
                       },
                       style: OutlinedButton.styleFrom(
