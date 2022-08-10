@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'balance.dart';
 import 'bottom_main_screen_bar.dart';
-
+import '../user.dart';
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
 

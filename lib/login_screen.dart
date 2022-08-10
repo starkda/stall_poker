@@ -12,7 +12,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  int curState = 500;
   final Map<String, dynamic> userData = DataCastGenerator().getUserDataCast();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -30,9 +29,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if (curState == 200) {
-      Navigator.of(context).pushReplacementNamed('main_screen');
-    }
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return SafeArea(
@@ -137,14 +133,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       onPressed: () async {
                         if (kDebugMode) {
                           print('login button taught');
-                          loginUser(userData).then((value) {
-                            if (kDebugMode) {
-                              print(value);
-                            }
-                            setState(() {
-                              curState = value;
-                            });
-                          });
+                          if (await loginUser(userData) == 200) {
+                            Navigator.of(context)
+                                .pushReplacementNamed('/main_screen');
+                          }
                         }
                       },
                       style: OutlinedButton.styleFrom(
