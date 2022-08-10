@@ -46,7 +46,7 @@ def close_db(response):
         g.link_db.close()
 
 
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['GET'])
 def index():
     return 'Hi! This is Official StallPoker webserver! Data: ' + str(request.is_json) + ' ' + str(request.headers['Content-Type'])
 
@@ -78,5 +78,15 @@ def login():
         return json.dumps(res[1])
     abort(Response(response=json.dumps(res[1]), status=500, headers={'Content-Type' : 'text/plain'}))
 
-# if __name__ == '__main__':
-#     app.run(debug=True)
+@app.route('/users', methods=['GET'])
+def getUserInfobyId():
+    id = request.args['id']
+    data = dbhandler.getUserDataById(id)
+    if (data[0] == False):
+        abort(Response(response=json.dumps(data[1]), status=500, headers={'Content-Type': 'text/plain'}))
+    else:
+        abort(Response(response=json.dumps(data[1]), status=200, headers={'Content-Type': 'text/plain'}))
+
+
+if __name__ == '__main__':
+    app.run(debug=True)

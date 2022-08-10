@@ -48,3 +48,19 @@ class DBHandler:
         except sqlite3.Error as e:
             return (False, {'msg':'Error accessing database: ' + str(e)})
         return (True, {'msg':'Login successful', 'data':data})
+
+    def getUserDataById(self, id):
+        data = dict()
+        try:
+            self.__cursor.execute(f"SELECT COUNT() as count FROM users WHERE id LIKE '{id}'")
+            amount = self.__cursor.fetchone()
+            if amount['count'] == 0:
+                return (False, {'msg': "User doesn't exist"})
+            else:
+                self.__cursor.execute(f"SELECT * FROM users WHERE id LIKE '{id}'")
+                data = dict(self.__cursor.fetchone())
+                data.pop('password')
+        except sqlite3.Error as e:
+            return (False, {'msg': 'Error accessing database: ' + str(e)})
+        else:
+            return (True, {'msg': 'User was found.', 'data': data})
