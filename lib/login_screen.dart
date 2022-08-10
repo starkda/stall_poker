@@ -78,6 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             width: width * 0.20,
                             height: height * 0.07,
                             child: TextField(
+                              controller: nameController,
                               scrollPadding: EdgeInsets.only(
                                   bottom:
                                       MediaQuery.of(context).viewInsets.bottom +
@@ -111,6 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             width: width * 0.20,
                             height: height * 0.07,
                             child: TextField(
+                              controller: passwordController,
                               scrollPadding: EdgeInsets.only(
                                   bottom:
                                       MediaQuery.of(context).viewInsets.bottom +

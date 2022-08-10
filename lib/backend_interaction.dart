@@ -49,11 +49,12 @@ Future<int> loginUser(Map<String, dynamic> userData) async {
   if (kDebugMode) {
     print(kek.body);
   }
-  if (kek.statusCode == 200) {
-    int id = jsonDecode(kek.body)['data']['id'];
-    Map<String, dynamic> data = await getUserDataById(id);
-    User(data['coins'], data['id'], data['login']);
-  }
+  // if (kek.statusCode == 200) {
+  //   int id = jsonDecode(kek.body)['data']['id'];
+  //   Map<String, dynamic> data = await getUserDataById(id);
+  //   User(data['coins'], data['id'], data['login']);
+  // }
+  print(userData);
 
   return kek.statusCode;
 }
@@ -61,6 +62,7 @@ Future<int> loginUser(Map<String, dynamic> userData) async {
 Future<Map<String, dynamic>> getUserDataById(int id) async {
   var url = Uri.parse('http://10.0.2.2:5000/users?id=$id');
   http.Response data = await http.get(url);
+
   if (kDebugMode) {
     print(data.body);
   }
