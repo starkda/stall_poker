@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:stallpoker/backend_interaction.dart';
+import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 import 'data_cast_generator.dart';
 
@@ -15,9 +16,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   final Map<String, dynamic> userData = DataCastGenerator().getUserDataCast();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  late IO.Socket socket;
 
   @override
   void initState() {
+    // socket = IO.io('http://10.0.2.2:5004', <String, dynamic>{
+    //   'transports': ['websocket'],
+    // });
+    // socket.onConnect((_) {
+    //   print('connect');
+    //   socket.json.emit('json',{'хуй':'пизда'});
+    // });
     super.initState();
     nameController.addListener(() {
       userData['login'] = nameController.text;
@@ -139,6 +148,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             Navigator.of(context)
                                 .pushReplacementNamed('/main_screen');
                           }
+                        //  somesocketstuff(socket);
                         }
                       },
                       style: OutlinedButton.styleFrom(

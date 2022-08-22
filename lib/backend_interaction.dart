@@ -3,6 +3,10 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:web_socket_channel/io.dart';
+import 'package:web_socket_channel/status.dart' as status;
+import 'package:socket_io_client/socket_io_client.dart' as IO;
+
 
 import 'user.dart';
 
@@ -15,7 +19,7 @@ void sendGetGameByIdData(String data, BuildContext context) {
 }
 
 Future<int> registerUser(Map<String, dynamic> userData) async {
-  var url = Uri.parse('http://10.0.2.2:5000/register');
+  var url = Uri.parse('http://10.0.2.2:5004/register');
   if (kDebugMode) {
     print(url);
   }
@@ -67,4 +71,12 @@ Future<Map<String, dynamic>> getUserDataById(int id) async {
     print(data.body);
   }
   return jsonDecode(data.body)['data'];
+}
+
+void somesocketstuff(IO.Socket socket) async {
+  // Dart client
+  socket.emit('kek', 'they are counting on me');
+  socket.on('event', (data) => print(data));
+  socket.onDisconnect((_) => print('disconnect'));
+  socket.on('fromServer', (_) => print(_));
 }

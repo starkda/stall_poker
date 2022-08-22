@@ -37,6 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_svg_provider: ^1.0.3
   http: ^0.13.5
+  web_socket_channel: ^2.2.0
+  socket_io_client: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -72,6 +74,17 @@ flutter:
     - assets/Help Button.png
     - assets/Profile Button.png
     - assets/search.svg
+    - assets/table.svg
+    - assets/table.png
+    - assets/krupie.png
+    - assets/krupie.svg
+    - assets/poker.png
+    - assets/poker.svg
+    - assets/back_of_card.svg
+    - assets/true back of card.png
+    - assets/avatar.jpg
+    - assets/chips.svg
+    - assets/true_back_of_card.jpg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'login_screen.dart';
 import 'registration_screen.dart';
 import 'stall_poker_screen/main_screen.dart';
+import 'game_screen/main_screen.dart';
 
 Route? routeGenerator(RouteSettings settings) {
   switch (settings.name) {
@@ -13,6 +14,10 @@ Route? routeGenerator(RouteSettings settings) {
     case ('/registration_screen'):
       return MaterialPageRoute(
           builder: (context) => const RegistrationScreen());
+    case ('/game_screen'):
+      return MaterialPageRoute(
+          builder: (context) => const GameScreen());
+
     default:
       return MaterialPageRoute(
           builder: (context) => const RegistrationScreen());
