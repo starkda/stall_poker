@@ -31,151 +31,192 @@ class StreamHandle {
 class _GameScreenState extends State<GameScreen> {
   @override
   Widget build(BuildContext context) {
-    var screenWidth = MediaQuery.of(context).size.width;
-    var screenHeight = MediaQuery.of(context).size.height;
+    var screenWidth = MediaQuery
+        .of(context)
+        .size
+        .width;
+    var screenHeight = MediaQuery
+        .of(context)
+        .size
+        .height;
+    var tableWidth = screenWidth * 0.75;
+    var tableHeight = tableWidth * 0.52;
     return StreamBuilder(
         stream: StreamHandle.getStream(),
         builder: (BuildContext context, AsyncSnapshot<List<Player>> snapshot) {
           print(snapshot.hasData);
           return SafeArea(
               child: Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/background.png'),
-                fit: BoxFit.fitHeight,
-              ),
-            ),
-            child: Stack(
-              alignment: AlignmentDirectional.topCenter,
-              children: [
-                Positioned(
-                  top: 40,
-                  child: Container(
-                    height: screenHeight * 0.65,
-                    width: screenWidth * 0.75,
-                    child: Image.asset(
-                      'assets/table.png',
-                      fit: BoxFit.fill,
-                    ),
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/background.png'),
+                    fit: BoxFit.fitHeight,
                   ),
                 ),
-                Positioned(
-                  top: 5,
-                  child: Container(
-                    child: Image.asset('assets/krupie.png'),
-                  ),
-                ),
-                Positioned(
-                  top: 40 + screenHeight * 0.12,
-                  child: Column(
-                    children: [
-                      SvgPicture.asset('assets/poker.svg'),
-                      SizedBox(
-                        height: 5,
+                child: Stack(
+                  //  alignment: AlignmentDirectional.topCenter,
+                  children: [
+                    Positioned(
+                      bottom:
+                      (screenHeight - tableHeight - screenHeight * 0.14) / 2 +
+                          screenHeight * 0.14,
+                      right: (screenWidth - tableWidth) / 2,
+                      child: Container(
+                        height: tableHeight,
+                        width: tableWidth,
+                        child: Image.asset(
+                          'assets/table.png',
+                          fit: BoxFit.fill,
+                        ),
                       ),
-                      Row(
+                    ),
+                    Positioned(
+                      right: (screenWidth - tableWidth) / 2 + tableWidth / 2 -
+                          35,
+                      bottom: (screenHeight - tableHeight -
+                          screenHeight * 0.14) / 2 +
+                          screenHeight * 0.14 + tableHeight - 50,
+                      child: Container(
+                        width: 70,
+                        height: 70,
+                        child: Image.asset('assets/krupie.png'),
+                      ),
+                    ),
+                    Positioned(
+                      bottom: (screenHeight - tableHeight -
+                          screenHeight * 0.14) / 2 +
+                          screenHeight * 0.14 + tableHeight -
+                          (tableHeight * 0.225 + 5 + tableWidth * 0.07 * 1.54) - tableHeight * 0.28,
+                      right: screenWidth / 2 - tableWidth * 0.255,
+                      child: Column(
                         children: [
-                          Container(
-                            height: 70,
-                            width: 43,
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: Color(0xffDBD38B), width: 2),
-                            ),
-                          ),
+                          Container(width: tableWidth * 0.43,
+                            height: tableHeight * 0.225,
+                            child: SvgPicture.asset(
+                              'assets/poker.svg', fit: BoxFit.fill,),),
                           SizedBox(
-                            width: 8,
+                              height: 15
                           ),
-                          Container(
-                            height: 70,
-                            width: 43,
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: Color(0xffDBD38B), width: 2),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 8,
-                          ),
-                          Container(
-                            height: 70,
-                            width: 43,
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: Color(0xffDBD38B), width: 2),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 8,
-                          ),
-                          Container(
-                            height: 70,
-                            width: 43,
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: Color(0xffDBD38B), width: 2),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 8,
-                          ),
-                          Container(
-                            height: 70,
-                            width: 43,
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: Color(0xffDBD38B), width: 2),
-                            ),
-                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Container(
+                                height: tableWidth * 0.07 * 1.54,
+                                width: tableWidth * 0.07,
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: Color(0xffDBD38B), width: 2),
+                                ),
+                              ),
+                              SizedBox(
+                                width: tableWidth * 0.04,
+                              ),
+                              Container(
+                                height: tableWidth * 0.07 * 1.54,
+                                width: tableWidth * 0.07,
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: Color(0xffDBD38B), width: 2),
+                                ),
+                              ),
+                              SizedBox(
+                                width: tableWidth * 0.04,
+                              ),
+                              Container(
+                                height: tableWidth * 0.07 * 1.54,
+                                width: tableWidth * 0.07,
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: Color(0xffDBD38B), width: 2),
+                                ),
+                              ),
+                              SizedBox(
+                                width: tableWidth * 0.04,
+                              ),
+                              Container(
+                                height: tableWidth * 0.07 * 1.54,
+                                width: tableWidth * 0.07,
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: Color(0xffDBD38B), width: 2),
+                                ),
+                              ),
+                              SizedBox(
+                                width: tableWidth * 0.04,
+                              ),
+                              Container(
+                                height: tableWidth * 0.07 * 1.54,
+                                width: tableWidth * 0.07,
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: Color(0xffDBD38B), width: 2),
+                                ),
+                              ),
+                            ],
+                          )
                         ],
-                      )
-                    ],
-                  ),
+                      ),
+                    ),
+                    Positioned(
+                      right: (screenWidth - tableWidth) / 2 - 75,
+                      bottom: (screenHeight - tableHeight -
+                          screenHeight * 0.14) / 2 +
+                          screenHeight * 0.14 + tableHeight - 90,
+                      child: Builder(builder: (BuildContext context) {
+                        if (snapshot.hasData) {
+                          return PlayerWidget(
+                              player: snapshot.data![0], position: 1);
+                        } else
+                          return Container();
+                      }),
+                    ),
+                    Positioned(
+                      right: (screenWidth - tableWidth) / 2 - 75,
+                      top: screenHeight * 0.4,
+                      child: Builder(builder: (BuildContext context) {
+                        if (snapshot.hasData) {
+                          return PlayerWidget(
+                              player: snapshot.data![0], position: 2);
+                        } else
+                          return Container();
+                      }),
+                    ),
+                    Positioned(
+                      left: (screenWidth - tableWidth) / 2 - 75,
+                      top: screenHeight * 0.4,
+                      child: Builder(builder: (BuildContext context) {
+                        if (snapshot.hasData) {
+                          return PlayerWidget(
+                              player: snapshot.data![0], position: 3);
+                        } else
+                          return Container();
+                      }),
+                    ),
+                    Positioned(
+                      left: (screenWidth - tableWidth) / 2 - 75,
+                      bottom: (screenHeight - tableHeight -
+                          screenHeight * 0.14) / 2 +
+                          screenHeight * 0.14 + tableHeight - 90,
+                      child: Builder(builder: (BuildContext context) {
+                        if (snapshot.hasData) {
+                          return PlayerWidget(
+                              player: snapshot.data![0], position: 4);
+                        } else
+                          return Container();
+                      }),
+                    ),
+                    Positioned(
+                      bottom: (screenHeight - tableHeight -
+                          screenHeight * 0.14) / 2 +
+                          screenHeight * 0.14 - 75,
+                      right: screenWidth / 2 - 110,
+                      child: MainPlayerWidget(
+                        player: snapshot.data![0],
+                      ),
+                    ),
+                  ],
                 ),
-                Positioned(
-                  right: screenWidth * 0.05,
-                  top: 0,
-                  child: Builder(builder: (BuildContext context) {
-                    if (snapshot.hasData) {
-                      return PlayerWidget(player: snapshot.data![0], position: 1);
-                    } else
-                      return Container();
-                  }),
-                ),
-                Positioned(
-                  right: 0,
-                  top:screenHeight * 0.4,
-                  child: Builder(builder: (BuildContext context) {
-                    if (snapshot.hasData) {
-                      return PlayerWidget(player: snapshot.data![0], position: 2);
-                    } else
-                      return Container();
-                  }),
-                ),
-                Positioned(
-                  right: screenWidth * 0.75 - 80,
-                  top: screenHeight * 0.43,
-                  child: Builder(builder: (BuildContext context) {
-                    if (snapshot.hasData) {
-                      return PlayerWidget(player: snapshot.data![0], position: 3);
-                    } else
-                      return Container();
-                  }),
-                ),
-                Positioned(
-                  right: screenWidth * 0.75 - 80,
-                  top: 0,
-                  child: Builder(builder: (BuildContext context) {
-                    if (snapshot.hasData) {
-                      return PlayerWidget(player: snapshot.data![0], position: 4);
-                    } else
-                      return Container();
-                  }),
-                ),
-                Positioned(top: screenHeight * 0.55, right: 200, child: MainPlayerWidget(player: snapshot.data![0],),),
-              ],
-            ),
-          ));
+              ));
         });
   }
 }
