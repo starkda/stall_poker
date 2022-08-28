@@ -32,3 +32,5 @@ def create_app():
     socket.init_app(app)
 
     return app
+
+create_app()
