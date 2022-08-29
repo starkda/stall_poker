@@ -1,0 +1,42 @@
+# general
+MSG_ERR_WRONG_CONTENT_TYPE = 'Content-Type must be json!'
+CODE_ERR_WRONG_CONTENT_TYPE = 100
+
+MSG_ERR_NO_LOGIN_OR_PASSWORD = 'No login or password'
+CODE_ERR_NO_LOGIN_OR_PASSWORD = 101
+
+MSG_ERR_USER_NOT_FOUND = 'User not found'
+CODE_ERR_USER_NOT_FOUND = 102
+
+MSG_ERR_WRONG_PASSWORD = 'Wrong password'
+CODE_ERR_WRONG_PASSWORD = 103
+
+# for routes
+MSG_ERR_USER_ALREADY_EXISTS = 'User already exists'
+CODE_ERR_USER_ALREADY_EXISTS = 104
+
+MSG_LOGIN_SUCCESSFUL = 'User login successful'
+CODE_LOGIN_SUCCESSFUL = 200
+
+MSG_REGISTER_SUCCESSFUL = 'User register successful'
+CODE_REGISTER_SUCCESSFUL = 201
+
+# for events
+
+MSG_ERR_PLAYER_ID_WAS_NOT_SPECIFIED = 'Player_id was not specified'
+CODE_ERR_PLAYER_ID_WAS_NOT_SPECIFIED = 150
+
+MSG_ERR_ALREADY_IN_ROOM = 'You are already in room'
+CODE_ERR_ALREADY_IN_ROOM = 151
+
+MSG_ERR_NOT_IN_ANY_ROOM = 'You are not in any room'
+CODE_ERR_NOT_IN_ANY_ROOM = 152
+
+MSG_CREATED_AND_JOINED_ROOM = 'Successfully created and joined room'
+CODE_CREATED_AND_JOINED_ROOM = 202
+
+MSG_JOINED_ROOM = 'Successfully joined room'
+CODE_JOINED_ROOM = 203
+
+MSG_LEAVED_ROOM = 'Successfully leaved room'
+CODE_LEAVED_ROOM = 204
