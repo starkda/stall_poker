@@ -1,7 +1,8 @@
-from flask_socketio import emit, join_room
+from flask_socketio import emit, join_room, leave_room
 from . import db, socket
 from .models import User, Room
 from .methods import delete_empty_room, is_json, load_json, check_user, get_jsonified_response
+from .constants import *
 
 
 @socket.on('my_event')
@@ -10,24 +11,26 @@ def handle_simple_event(message):
 
 
 @socket.on('create_room')
-def create_room(message):
+def create_game_room(message):
     if not is_json(message):
-        emit('msg', get_jsonified_response('Content must be json!'))
+        emit('msg', get_jsonified_response(
+            MSG_ERR_WRONG_CONTENT_TYPE, CODE_ERR_WRONG_CONTENT_TYPE))
         return
     data = load_json(message)
     if 'login' not in data or 'password' not in data:
-        emit('msg', get_jsonified_response('No login or password'))
+        emit('msg', get_jsonified_response(
+            MSG_ERR_NO_LOGIN_OR_PASSWORD, CODE_ERR_NO_LOGIN_OR_PASSWORD))
         return
     check_result = check_user(data['login'], data['password'])
     if not check_result[0]:
-        emit('msg', get_jsonified_response(check_result[1]))
+        emit('msg', get_jsonified_response(check_result[1], check_result[2]))
         return
 
     current_room = db.session.query(User.room_id).filter(
         User.login == data['login']).first()[0]
     if current_room is not None:
         emit('msg', get_jsonified_response(
-            'You are already in room: ' + str(current_room)))
+            MSG_ERR_ALREADY_IN_ROOM, CODE_ERR_ALREADY_IN_ROOM, room_id=current_room))
         return
 
     new_room = Room()
@@ -53,36 +56,41 @@ def create_room(message):
 
     join_room(room_id)
 
-    emit('msg', get_jsonified_response('ok, new room id is: ' + str(room_id)))
+    emit('msg', get_jsonified_response(MSG_CREATED_AND_JOINED_ROOM,
+         CODE_CREATED_AND_JOINED_ROOM, room_id=room_id))
 
 
 @socket.on('join_room')
-def join_room(message):
+def join_game_room(message):
     if not is_json(message):
-        emit('msg', get_jsonified_response('Content must be json!'))
+        emit('msg', get_jsonified_response(
+            MSG_ERR_WRONG_CONTENT_TYPE, CODE_ERR_WRONG_CONTENT_TYPE))
         return
     data = load_json(message)
     if 'login' not in data or 'password' not in data:
-        emit('msg', get_jsonified_response('No login or password'))
+        emit('msg', get_jsonified_response(
+            MSG_ERR_NO_LOGIN_OR_PASSWORD, CODE_ERR_NO_LOGIN_OR_PASSWORD))
         return
     if 'player_id' not in data:
-        emit('msg', get_jsonified_response('Player_id was not specified'))
+        emit('msg', get_jsonified_response(
+            MSG_ERR_PLAYER_ID_WAS_NOT_SPECIFIED, CODE_ERR_PLAYER_ID_WAS_NOT_SPECIFIED))
         return
     check_result = check_user(data['login'], data['password'])
     if not check_result[0]:
-        emit('msg', get_jsonified_response(check_result[1]))
+        emit('msg', get_jsonified_response(check_result[1], check_result[2]))
         return
 
     current_room = db.session.query(User.room_id).filter(
         User.login == data['login']).first()[0]
     if current_room is not None:
         emit('msg', get_jsonified_response(
-            'You are already in room: ' + str(current_room)))
+            MSG_ERR_ALREADY_IN_ROOM, CODE_ERR_ALREADY_IN_ROOM, room_id=current_room))
         return
     room_id = db.session.query(User.room_id).filter(
         User.id == int(data['player_id'])).first()[0]  # potential error
     if room_id is None:
-        emit('msg', get_jsonified_response('User not found'))
+        emit('msg', get_jsonified_response(
+            MSG_ERR_USER_NOT_FOUND, CODE_ERR_USER_NOT_FOUND))
         return
     # check, that new player does not violate MAX_PLAYERS constraint
 
@@ -94,26 +102,29 @@ def join_room(message):
     join_room(room_id)
 
     emit('msg', get_jsonified_response(
-        'successfully joined the room ' + str(room_id)))
+        MSG_JOINED_ROOM, CODE_JOINED_ROOM, room_id=room_id))
 
 
 # TODO: when should room_id be removed from User?
 # TODO: when should room be deleted from table?
 
 @socket.on('leave_room')
-def leave_room(message):
+def leave_game_room(message):
     if not is_json(message):
-        emit('msg', get_jsonified_response('Content must be json!'))
+        emit('msg', get_jsonified_response(
+            MSG_ERR_WRONG_CONTENT_TYPE, CODE_ERR_WRONG_CONTENT_TYPE))
         return
     data = load_json(message)
     if 'login' not in data or 'password' not in data:
-        emit('msg', get_jsonified_response('No login or password'))
+        emit('msg', get_jsonified_response(
+            MSG_ERR_NO_LOGIN_OR_PASSWORD, CODE_ERR_NO_LOGIN_OR_PASSWORD))
         return
 
     current_room = db.session.query(User.room_id).filter(
         User.login == data['login']).first()[0]
     if current_room is None:
-        emit('msg', get_jsonified_response('You are not in any room'))
+        emit('msg', get_jsonified_response(
+            MSG_ERR_NOT_IN_ANY_ROOM, CODE_ERR_NOT_IN_ANY_ROOM))
         return
 
     user = db.session.query(User).filter(User.login == data['login']).first()
@@ -125,4 +136,5 @@ def leave_room(message):
 
     leave_room(room_id)
 
-    emit('msg', 'You leaved room ' + str(room_id))
+    emit('msg', get_jsonified_response(
+        MSG_LEAVED_ROOM, CODE_LEAVED_ROOM, room_id=room_id))
